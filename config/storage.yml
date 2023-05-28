@@ -9,11 +9,12 @@ local:
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: CYPKuzbDmCijesQ6Bf9m
-  secret_access_key: 4SRzIjwPIHGHUT6xDqxRYuJYKNQZcHNzNF7jqTCh
-  # region: us-east-1
+  access_key_id: OLr2w10cVI7bLeHN2shQ
+  secret_access_key: snV0mxAUazrcQkyCmw7zBKh3eBPx9a5HqOLVCYTf
+  region: us-east-1
   bucket: my-rails
-  endpoint: http://localhost:9000
+  endpoint: http://minio:9000
+  force_path_style: true
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
