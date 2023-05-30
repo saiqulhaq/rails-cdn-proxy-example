@@ -59,6 +59,16 @@ Rails.application.configure do
   # Disable digesting assets with an md5 tag.
   config.assets.digest = false
 
+  # config.asset_host = "http://localhost:9000"
+  # config.public_file_server.enabled = false # ENV["RAILS_SERVE_STATIC_FILES"].present?
+
+  Rails.application.routes.default_url_options[:host] = "localhost:8000"
+  # config.routes.default_url_options[:host] = 'example.com'
+  config.action_controller.default_url_options = { host: 'localhost', port: 3000 }
+
+
+  # config.default_url_options = { :host => 'localhost:8000', :protocol => 'http://' }
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

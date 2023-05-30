@@ -5,6 +5,32 @@ Rails.application.routes.draw do
   get "/up/", to: "up#index", as: :up
   get "/up/databases", to: "up#databases", as: :up_databases
 
+  direct :cdn_image do |model, options|
+    Rails.logger.debug '#==================================='
+    Rails.logger.debug options.inspect
+    Rails.logger.debug '#==================================='
+    if model.respond_to?(:signed_id)
+      route_for(
+        :rails_service_blob_proxy,
+        model.signed_id,
+        model.filename,
+        options.merge(host: 'cloudflare.com')
+      )
+    else
+      signed_blob_id = model.blob.signed_id
+      variation_key  = model.variation.key
+      filename       = model.blob.filename
+  
+      route_for(
+        :rails_blob_representation_proxy,
+        signed_blob_id,
+        variation_key,
+        filename,
+        options.merge(host: 'asd112323')
+      )
+    end
+  end
+
   # Sidekiq has a web dashboard which you can enable below. It's turned off by
   # default because you very likely wouldn't want this to be available to
   # everyone in production.

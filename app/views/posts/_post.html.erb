@@ -5,7 +5,16 @@
   </p>
   <p>
     <strong>Image:</strong>
-    <%= image_tag post.image %>
+    <%= image_tag rails_storage_proxy_path(post.image) if post.image.present? %>
   </p>
+
+  <p>
+  <strong>CDN Image:</strong>
+  <%= cdn_image_url(post.image) if post.image.present? %>
+  <hr>
+  <%= rails_storage_proxy_path(post.image) %>
+
+</p>
+
 
 </div>
